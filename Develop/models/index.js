@@ -1,6 +1,4 @@
-// this file is exporting our models
-
+// this file is exporting our workout plan model
 module.exports = {
-    Exercises: require("./Exercises"),
     WorkoutPlan: require("./WorkoutPlan")
   };

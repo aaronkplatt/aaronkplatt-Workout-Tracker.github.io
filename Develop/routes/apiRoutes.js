@@ -3,7 +3,7 @@ const db = require("../models");
 
 module.exports = function (app) {
 
-// GET LAST WORKOUT
+// GET LAST WORKOUT FROM THE DATABASE
     app.get("/api/workouts", function (request, response) {
         db.WorkoutPlan.find({})
             .then(function (dbWorkouts) {
@@ -14,8 +14,9 @@ module.exports = function (app) {
             })
     });
 
-// GET ALL WORKOUTS
-    app.get("/api/workouts/range", function (request, response) {        db.WorkoutPlan.find({})
+// GET ALL WORKOUTS FROM THE DATABASE
+    app.get("/api/workouts/range", function (request, response) {
+        db.WorkoutPlan.find({})
             .then(function (dbWorkouts) {
                 response.json(dbWorkouts);
             })
@@ -24,7 +25,7 @@ module.exports = function (app) {
             })
     });
 
-// CREATE WORKOUT PLAN
+// CREATE WORKOUT PLAN WHICH WILL CREATE A BRAND NEW OBJECT IN OUR DATABASE, THIS HAPPENS IF YOU CLICK NEW WORKOUT.
     app.post("/api/workouts", function (request, response) {
         db.WorkoutPlan.create({})
             .then(function (dbWorkout) {
@@ -35,7 +36,7 @@ module.exports = function (app) {
             });
     });
 
-// UPDATE WORKOUT PLAN
+// UPDATE WORKOUT PLAN WHICH WILL ALLOW YOU TO ADD TO AN EXCISTING WORKOUT. 
     app.put("/api/workouts/:id", function (request, response) {
         db.WorkoutPlan.findByIdAndUpdate(
             request.params.id,
