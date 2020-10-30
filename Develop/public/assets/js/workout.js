@@ -1,14 +1,19 @@
 async function initWorkout() {
   const lastWorkout = await API.getLastWorkout();
+
+
   console.log("Last workout:", lastWorkout);
   if (lastWorkout) {
+    //boiler plate didnt have a function for exercise durations
+    totalExerciseTime = sumOfExerciseDurations(lastWorkout.exercises);
     document
       .querySelector("a[href='/exercise?']")
       .setAttribute("href", `/exercise?id=${lastWorkout._id}`);
 
     const workoutSummary = {
       date: formatDate(lastWorkout.day),
-      totalDuration: lastWorkout.totalDuration,
+      //This wasnt added in the bilerplate, needed so it isnt undefined
+      totalDuration: totalExerciseTime,
       numExercises: lastWorkout.exercises.length,
       ...tallyExercises(lastWorkout.exercises)
     };
@@ -17,6 +22,15 @@ async function initWorkout() {
   } else {
     renderNoWorkoutText()
   }
+}
+
+//New function to add all the durations of the workouts
+function sumOfExerciseDurations(exercises) {
+  let totalTime = 0;
+  for (const exercise of exercises) {
+    totalTime += exercise.duration;
+  }
+  return totalTime;
 }
 
 function tallyExercises(exercises) {
