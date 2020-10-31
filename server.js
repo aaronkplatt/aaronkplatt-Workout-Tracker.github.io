@@ -14,8 +14,8 @@ app.use(express.json());
 app.use(express.static("public")); // imported the assets
 app.use(express.static("public/views")); // imports the views which are the html files.
 
-require("./routes/htmlRoutes")(app);
-require("./routes/apiRoutes")(app);
+require("./routes/htmlRoutes.js")(app);
+require("./routes/apiRoutes.js")(app);
 
 // MongoDB
 // mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workoutDB", { useNewUrlParser: true });
