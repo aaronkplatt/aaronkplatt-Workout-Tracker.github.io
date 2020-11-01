@@ -1,5 +1,5 @@
 async function initWorkout() {
-  try {
+
   const lastWorkout = await API.getLastWorkout();
 
 
@@ -95,5 +95,5 @@ function renderNoWorkoutText() {
   p.appendChild(strong);
   container.appendChild(p);
 }
-};
+
 initWorkout();
